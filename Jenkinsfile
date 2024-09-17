@@ -5,6 +5,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
+                    echo "hello world"
                     def commitID = env.GIT_COMMIT
                     echo "your commit  id is ${commitID}"
                     sh " docker stop $(docker ps -a -q) || true"
