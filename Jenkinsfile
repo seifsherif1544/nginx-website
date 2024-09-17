@@ -8,9 +8,9 @@ pipeline {
                     echo "hello world"
                     def commitID = env.GIT_COMMIT
                     echo "your commit  id is ${commitID}"
-                    sh " docker stop $(docker ps -a -q) || true"
-                    sh "docker rm $(docker ps -a -q) || true"
-                    sh "docker rmi -f $(docker images -aq) || true"
+                    sh " docker stop \$(docker ps -a -q) || true"
+                    sh "docker rm \$(docker ps -a -q) || true"
+                    sh "docker rmi -f \$(docker images -aq) || true"
                     sh "docker build -t nginx-website/new-repo:${commitID} ."
                 }
             }
