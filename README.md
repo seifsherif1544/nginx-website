@@ -30,6 +30,10 @@ This project helps me learn Nginx and create a static website.
 
 - Find the automation script at: [demo_project.sh](./demo_project.sh)
 
+### 2.2-Script for Jenkins Pipeline
+
+- https://github.com/seifsherif1544/nginx-website/blob/master/Jenkinsfile
+
 # Related Documentation
 
 - [Nginx Documentation](https://docs.nginx.com/)
