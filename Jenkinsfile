@@ -7,9 +7,9 @@ pipeline {
                 script {
                     def commitID = env.GIT_COMMIT
                     echo "your commit  id is ${commitID}"
-                    sh " docker stop $(docker ps -a -q)" || true
-                    sh "docker rm $(docker ps -a -q)" || true
-                    sh "docker rmi -f $(docker images -aq)" || true
+                    sh " docker stop $(docker ps -a -q) || true"
+                    sh "docker rm $(docker ps -a -q) || true"
+                    sh "docker rmi -f $(docker images -aq) || true"
                     sh "docker build -t nginx-website/new-repo:${commitID} ."
                 }
             }
@@ -29,11 +29,11 @@ pipeline {
         stage('STOP AND START CONTAINER') {
             steps {
                 script{
-                   sh "docker stop my-website || true"
-                   sh "docker rm my-website || true"
-                   sh "docker run -d -p 5000:5000 --name my-website nginx-website/new-repo:${env.GIT_COMMIT}"
-                   sh "sleep 20s"
-                   sh "curl localhost:5000"
+                    sh "docker stop my-website || true"
+                    sh "docker rm my-website || true"
+                    sh "docker run -d -p 5000:5000 --name my-website nginx-website/new-repo:${env.GIT_COMMIT}"
+                    sh "sleep 20s"
+                    sh "curl localhost:5000"
                 }
             }
         } 
