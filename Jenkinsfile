@@ -7,7 +7,10 @@ pipeline {
                 script {
                     def commitID = env.GIT_COMMIT
                     echo "your commit  id is ${commitID}"
-                    sh "docker build -t ssherif/new-repo:${commitID} ."
+                    sh " docker stop $(docker ps -a -q)"
+                    sh "docker rm $(docker ps -a -q)"
+                    sh "docker rmi -f $(docker images -aq)"
+                    sh "docker build -t nginx-website/new-repo:${commitID} ."
                 }
             }
         }
@@ -17,7 +20,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'dockercred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-                        sh "docker push ssherif/new-repo:${env.GIT_COMMIT}"
+                        sh "docker push nginx-website/new-repo:${env.GIT_COMMIT}"
                     }
                 }
             }
@@ -26,9 +29,11 @@ pipeline {
         stage('STOP AND START CONTAINER') {
             steps {
                 script{
-                   sh "docker stop my-app || true"
-                   sh "docker rm my-app || true"
-                   sh "docker run -d -p 5000:5000 --name my-app ssherif/new-repo:${env.GIT_COMMIT}"
+                   sh "docker stop my-website || true"
+                   sh "docker rm my-website || true"
+                   sh "docker run -d -p 5000:5000 --name my-website nginx-website/new-repo:${env.GIT_COMMIT}"
+                   sh "sleep 20s"
+                   sh "curl localhost:5000"
                 }
             }
         } 
