@@ -32,7 +32,7 @@ pipeline {
                 script{
                     sh "docker stop my-website || true"
                     sh "docker rm my-website || true"
-                    sh "docker run -d -p 5000:5000 --name my-website ssherif/new-repo:${env.GIT_COMMIT}"
+                    sh "docker run -d -p 5000:80 --name my-website ssherif/new-repo:${env.GIT_COMMIT}"
                     sh "sleep 20s"
                     sh "curl localhost:5000"
                 }
