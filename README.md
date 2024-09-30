@@ -7,7 +7,7 @@ This project helps me learn Nginx and create a static website.
 ### Prerequisite
 
 - Basic knowledge about Docker
-- Tools: `docker`, `curl`
+- Tools: `docker`, `curl`, `Jenkins`
 
 ## 1-Setup Nginx Server
 
@@ -17,12 +17,12 @@ This project helps me learn Nginx and create a static website.
 
 ### 1.2-Run Docker Container
 
-- Run `docker run -d -p 8080:80 my-nginx-static-site`
+- Run `docker run -d -p 5000:80 my-nginx-static-site`
 
 ### 1.3-Verify Installation
 
-- Execute `curl localhost:8081` in your terminal
-- Alternatively, open [http://localhost:8081/](http://localhost:8081/) in your browser
+- Execute `curl localhost:5000` in your terminal
+- Alternatively, open [http://localhost:5000/](http://localhost:5000/) in your browser
 
 ## 2-Explore Additional Resources
 
@@ -30,10 +30,8 @@ This project helps me learn Nginx and create a static website.
 
 - Find the automation script at: [demo_project.sh](./demo_project.sh)
 
-### 2.2-Script for Jenkins Pipeline
+### 2.2-Script for Jenkins Pipeline (CI/CD)
 
 - https://github.com/seifsherif1544/nginx-website/blob/master/Jenkinsfile
 
-# Related Documentation
 
-- [Nginx Documentation](https://docs.nginx.com/)
